@@ -1,9 +1,9 @@
-package principal;
-
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -21,10 +21,14 @@ public class About extends Thread implements ActionListener, ChangeListener {
 
 	static JLabel email = new JLabel("smr2gocar@gmail.com");
 
+	static boolean andar = true;
+
 	@Override
+
 	public void run() {
 
 		try {
+
 			scrollEffect();
 		}
 
@@ -37,11 +41,25 @@ public class About extends Thread implements ActionListener, ChangeListener {
 	public About() {
 
 		JFrame jf = new JFrame("Scroll Effect");
-		
+
+		jf.addWindowListener(new WindowAdapter() {
+
+			@Override
+
+			public void windowClosing(WindowEvent e) {
+
+				andar = false;
+
+			}
+
+		});
+
+		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		jf.setAlwaysOnTop(true);
-		
+
 		jf.setTitle("Sobre");
-		
+
 		jf.setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/imagenes/about.png")));
 
 		JPanel jp = new JPanel();
@@ -49,7 +67,9 @@ public class About extends Thread implements ActionListener, ChangeListener {
 		jf.setSize(600, 350);
 
 		jp.setSize(800, 600);
+
 		lab.setIcon(new ImageIcon(About.class.getResource("/imagenes/dev.png")));
+
 		lab.setBounds(184, 251, 340, 48);
 
 		lab.setHorizontalAlignment(SwingConstants.CENTER);
@@ -61,39 +81,52 @@ public class About extends Thread implements ActionListener, ChangeListener {
 		jp.add(lab);
 
 		jf.getContentPane().add(jp);
+
 		email.setHorizontalAlignment(SwingConstants.CENTER);
+
 		email.setIcon(new ImageIcon(About.class.getResource("/imagenes/email.png")));
 
 		email.setFont(new Font("Arial", Font.PLAIN, 20));
+
 		email.setBounds(194, 319, 330, 42);
+
 		jp.add(email);
 
 		JLabel lblNewLabel_1 = new JLabel("Programa creado por");
+
 		lblNewLabel_1.setIcon(new ImageIcon(About.class.getResource("/imagenes/created.png")));
+
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 20));
+
 		lblNewLabel_1.setBounds(184, 12, 340, 53);
+
 		jp.add(lblNewLabel_1);
 
 		jf.setVisible(true);
+
 		jf.setLocationRelativeTo(null);
+
 	}
 
 	public static void scrollEffect() throws InterruptedException {
 
 		int x = -80;
 
-		while (true) {
+		while (andar) {
 
 			if (x == -196) {
+
 				x = -80;
+
 			}
 
 			x--;
 
-			About.lab.setBounds(-120, x, 800, 600);
+			lab.setBounds(-120, x, 800, 600);
 
-			About.email.setBounds(170, x, 300, 700);
+			email.setBounds(170, x, 300, 700);
 
 			Thread.sleep(20);
 
@@ -101,15 +134,11 @@ public class About extends Thread implements ActionListener, ChangeListener {
 
 	}
 
-	@Override
 	public void stateChanged(ChangeEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
