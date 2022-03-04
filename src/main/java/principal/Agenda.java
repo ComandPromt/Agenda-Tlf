@@ -915,19 +915,29 @@ public class Agenda extends JFrame {
 		mnNewMenu_3.add(mntmNewMenuItem_16);
 
 		JMenuItem mntmNewMenuItem_21 = new JMenuItem("Sobre");
+		
 		mntmNewMenuItem_21.setFont(new Font("Dialog", Font.PLAIN, 16));
 
 		mntmNewMenuItem_21.addMouseListener(new MouseAdapter() {
 
 			@Override
+			
 			public void mousePressed(MouseEvent e) {
+				
 				try {
-					About effect = new About();
-					effect.start();
+					
+					About sobre = new About();
 
-				} catch (Exception e1) {
+					sobre.andar = true;
+
+					sobre.start();
 
 				}
+				
+				catch (Exception e1) {
+
+				}
+				
 			}
 
 		});
