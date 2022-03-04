@@ -37,7 +37,11 @@ public class About extends Thread implements ActionListener, ChangeListener {
 	public About() {
 
 		JFrame jf = new JFrame("Scroll Effect");
+		
+		jf.setAlwaysOnTop(true);
+		
 		jf.setTitle("Sobre");
+		
 		jf.setIconImage(Toolkit.getDefaultToolkit().getImage(About.class.getResource("/imagenes/about.png")));
 
 		JPanel jp = new JPanel();
